@@ -23,12 +23,13 @@ model conductor {
   nombre String
   apellido String
   rut String @unique
+  rfid String @unique
   empresaId Int
   empresa empresa @relation(fields: [empresaId], references: [id])
-  camiones camiones[]
+  camion camion[]
 }
 
-model camiones {
+model camion {
   id Int @id @default(autoincrement())
   patente String @unique
   marca String
@@ -45,5 +46,5 @@ model registro {
   fecha DateTime @default(now())
   tipoDeRegistro String
   camionId Int
-  camion camiones @relation(fields: [camionId], references: [id])
+  camion camion @relation(fields: [camionId], references: [id])
 }
