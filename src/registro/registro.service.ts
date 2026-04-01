@@ -3,7 +3,7 @@ import { PrismaService } from '../prisma.service.js';
 import { CamionService } from '../camion/camion.service.js';
 import { Estado } from '../generated/prisma/client.js';
 
-const MINUTOS_MINIMOS = 15;
+const MINUTOS_MINIMOS = 2;
 
 @Injectable()
 export class RegistroService {
