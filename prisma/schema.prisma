@@ -14,7 +14,7 @@ enum Estado {
 
 model empresa {
   id Int @id @default(autoincrement())
-  nombre String
+  nombre String @unique
   conductor conductor[]
 }
 
