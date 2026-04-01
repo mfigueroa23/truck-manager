@@ -1,0 +1,49 @@
+generator client {
+  provider = "prisma-client"
+  output   = "../src/generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+enum Estado {
+  Disponible
+  Reparto
+}
+
+model empresa {
+  id Int @id @default(autoincrement())
+  nombre String
+  conductor conductor[]
+}
+
+model conductor {
+  id Int @id @default(autoincrement())
+  nombre String
+  apellido String
+  rut String @unique
+  empresaId Int
+  empresa empresa @relation(fields: [empresaId], references: [id])
+  camiones camiones[]
+}
+
+model camiones {
+  id Int @id @default(autoincrement())
+  patente String @unique
+  marca String
+  modelo String
+  carga String
+  conductorId Int
+  estado Estado @default(Disponible)
+  conductor conductor @relation(fields: [conductorId], references: [id])
+  registro registro[]
+}
+
+model registro {
+  id Int @id @default(autoincrement())
+  fecha DateTime @default(now())
+  tipoDeRegistro String
+  camionId Int
+  camion camiones @relation(fields: [camionId], references: [id])
+}
