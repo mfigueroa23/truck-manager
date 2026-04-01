@@ -42,9 +42,9 @@ model camion {
 }
 
 model registro {
-  id Int @id @default(autoincrement())
-  fecha DateTime @default(now())
-  tipoDeRegistro String
-  camionId Int
-  camion camion @relation(fields: [camionId], references: [id])
+  id        Int       @id @default(autoincrement())
+  salidaAt  DateTime
+  entradaAt DateTime?
+  camionId  Int
+  camion    camion    @relation(fields: [camionId], references: [id])
 }
